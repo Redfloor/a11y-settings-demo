@@ -1,16 +1,14 @@
 import {act, fireEvent, render, screen} from '@testing-library/react';
 
 import {App} from './App';
-import {i18n} from './i18n/i18n';
 import {defaultSettings, useSettingsStore} from './settings/useSettings';
 
 const root = document.documentElement;
 
 describe('the settings take effect', () => {
-    beforeEach(async () => {
-        localStorage.clear();
+    beforeEach(() => {
         useSettingsStore.setState(defaultSettings);
-        await i18n.changeLanguage('en');
+        localStorage.clear();
     });
 
     it('applies the theme as a class on <html>', () => {
@@ -57,10 +55,13 @@ describe('the settings take effect', () => {
         }
     });
 
-    it('announces when settings are saved', () => {
+    it('saves every change, the language included, with no Save button', () => {
         render(<App/>);
-        fireEvent.click(screen.getByRole('button', {name: 'Save'}));
-        expect(screen.getAllByRole('status')[0]).toHaveTextContent('Settings saved.');
+        fireEvent.change(screen.getByLabelText('Theme'), {target: {value: 'light'}});
+        fireEvent.change(screen.getByLabelText('Language'), {target: {value: 'af'}});
+
+        expect(JSON.parse(localStorage.getItem('settingsState') ?? '{}')).toMatchObject({theme: 'light', language: 'af'});
+        expect(screen.queryByRole('button', {name: /save|stoor/i})).not.toBeInTheDocument();
     });
 
     it("explains that speech control isn't available when the browser can't recognise speech", () => {

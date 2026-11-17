@@ -1,26 +1,36 @@
 import {defaultSettings, migrateSettings, useSettingsStore} from './useSettings';
 
+const saved = (): Record<string, unknown> => JSON.parse(localStorage.getItem('settingsState') ?? '{}');
+
 describe('settings', () => {
     beforeEach(() => {
-        localStorage.clear();
         useSettingsStore.setState(defaultSettings);
+        localStorage.clear();
     });
 
-    it('saves only the setting values, and loads them back', () => {
+    it('saves every change straight away, with no Save step', () => {
         useSettingsStore.getState().setTheme('highContrast');
+        expect(saved()).toMatchObject({theme: 'highContrast'});
+
         useSettingsStore.getState().setFontSize('largeFonts');
-        expect(useSettingsStore.getState().saveSettings()).toBe(true);
+        expect(saved()).toEqual({...defaultSettings, theme: 'highContrast', fontSize: 'largeFonts'});
+    });
 
-        expect(JSON.parse(localStorage.getItem('settingsState') ?? '{}')).toEqual({
-            ...defaultSettings,
-            theme: 'highContrast',
-            fontSize: 'largeFonts',
-        });
+    it('saves the language with the other settings', () => {
+        useSettingsStore.getState().setLanguage('af');
+        expect(saved()).toMatchObject({language: 'af'});
+    });
 
-        useSettingsStore.setState(defaultSettings);
+    it('stores only values, under one app-wide key', () => {
+        useSettingsStore.getState().setSpeechControl(true);
+        expect(Object.keys(localStorage)).toEqual(['settingsState']);
+        expect(Object.keys(saved()).sort()).toEqual(Object.keys(defaultSettings).sort());
+    });
+
+    it('loads what was saved', () => {
+        localStorage.setItem('settingsState', JSON.stringify({theme: 'light', language: 'af'}));
         useSettingsStore.getState().loadSettings();
-        expect(useSettingsStore.getState().theme).toBe('highContrast');
-        expect(useSettingsStore.getState().fontSize).toBe('largeFonts');
+        expect(useSettingsStore.getState()).toMatchObject({theme: 'light', language: 'af'});
     });
 
     it('keeps the current settings when saved data is unreadable', () => {
@@ -39,6 +49,11 @@ describe('settings', () => {
 
         it('prefers a saved motion preference over the old flag', () => {
             expect(migrateSettings({reduceAnimations: true, motionPreference: 'full'})).toEqual({motionPreference: 'full'});
+        });
+
+        it("drops a language the app doesn't have, so the default applies", () => {
+            expect(migrateSettings({language: 'fr', theme: 'light'})).toEqual({theme: 'light'});
+            expect(migrateSettings({language: 'af'})).toEqual({language: 'af'});
         });
     });
 });

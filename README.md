@@ -21,10 +21,12 @@ React 19, TypeScript 6 (strict), Vite, Zustand, styled-components and i18next, t
 | **Font size** (Normal, Large) | A class on `<html>` that sets `--font-size-*` and `--line-height-*`. The font is OpenDyslexic | `src/theme/fontSizes` |
 | **Accessible spacing** | A class on `<html>` that sets `--spacing-1` to `--spacing-4` | `src/theme/spacing` |
 | **Motion** (Follow system setting, Reduced, Full) | `<html data-motion="reduced" \| "full">`, resolved against the OS `prefers-reduced-motion` and updated live when the OS setting changes | `src/motion` |
-| **Language** (English, Afrikaans) | i18next; also sets `<html lang>` so screen readers pronounce the page correctly | `src/i18n` |
+| **Language** (English, Afrikaans) | A setting like the others: i18next starts in the saved language and follows the setting, and `<html lang>` follows it so screen readers pronounce the page correctly | `src/i18n` |
 | **Speech control** | Listens with the Web Speech API: "next" moves through a menu and "select" chooses, in English or Afrikaans | `src/speech` |
 
-Every setting applies as soon as it changes. **Save** keeps them in `localStorage` for next time.
+Every setting applies, and is saved, as soon as it changes. They're app-wide: one `settingsState` entry in
+`localStorage`, kept apart from anything per-player or per-save (in the game, each character's save has its own key).
+There's no Save button.
 
 Components never read the settings themselves. They use the CSS variables, and the few that move add a reduced-motion
 version with `whenReducedMotion`:
@@ -69,15 +71,13 @@ This is the game's code, with these changes:
 - **Speech recognition uses `en-GB`** (the game sends `en-UK`, which isn't a valid language tag), and the page says when
   the browser has no speech recognition (anything but Chromium-based browsers) instead of the setting silently doing
   nothing.
-- **Save announces itself** to screen readers, and `<html lang>` follows the language.
+- **`<html lang>` follows the language.**
 - **Controls use the main background colour.** In the High Contrast theme, the secondary background is black while
   the text is also black.
 - **The font comes from `@fontsource/opendyslexic`** (SIL Open Font License) instead of bundled files.
 
 ## Known gaps (same as the game)
 
-- The language isn't saved: it's back to English after a reload.
-- Settings are only kept when Save is pressed.
 - The Protanopia and Deuteranopia themes are identical, and several themes set `--text-color` twice.
 
 ## Layout

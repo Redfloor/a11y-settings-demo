@@ -18,8 +18,6 @@
   "Motion.system": "Follow system setting",
   "Motion.reduced": "Reduced",
   "Motion.full": "Full",
-  "Save": "Save",
-  "saved": "Settings saved.",
   "speechControl.on": "Speech control is on",
   "speechControl.off": "Speech control is off",
   "speechControl.unsupported": "This browser doesn't support speech recognition. Try Chrome or Edge.",

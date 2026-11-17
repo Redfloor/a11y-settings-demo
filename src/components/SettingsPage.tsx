@@ -1,4 +1,4 @@
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
 import {useTranslation} from 'react-i18next';
 import {styled} from 'styled-components';
 
@@ -6,8 +6,6 @@ import {isLanguage, languages} from '../i18n/resources';
 import {isMotionPreference, motionPreferences} from '../motion/motionPreference';
 import {FontSize, Theme, useSettingsStore} from '../settings/useSettings';
 import {getSpeechRecognition} from '../speech/useSpeechControl';
-
-import {Button} from './Button';
 
 const themes: readonly {value: Theme; label: string}[] = [
     {value: 'light', label: 'Light'},
@@ -35,18 +33,17 @@ const StyledHint = styled.p`
     margin: 0;
 `;
 
-/** Every setting here takes effect as soon as it changes. Save keeps them for next time. */
+/** Every setting here takes effect, and is saved, as soon as it changes. */
 export const SettingsPage = (): ReactNode => {
-    const {t, i18n} = useTranslation();
+    const {t} = useTranslation();
     const {
+        language, setLanguage,
         theme, setTheme,
         spacing, setSpacing,
         fontSize, setFontSize,
         speechControl, setSpeechControl,
         motionPreference, setMotionPreference,
-        saveSettings,
     } = useSettingsStore();
-    const [saveMessage, setSaveMessage] = useState('');
     const speechSupported = getSpeechRecognition() !== undefined;
 
     return (
@@ -57,9 +54,9 @@ export const SettingsPage = (): ReactNode => {
                 <label htmlFor="language">{t('Language')}</label>
                 <select
                     id="language"
-                    value={i18n.language}
+                    value={language}
                     onChange={(e) => {
-                        if (isLanguage(e.target.value)) void i18n.changeLanguage(e.target.value);
+                        if (isLanguage(e.target.value)) setLanguage(e.target.value);
                     }}
                 >
                     {languages.map((lang) => (
@@ -122,11 +119,6 @@ export const SettingsPage = (): ReactNode => {
                 {!speechSupported && <StyledHint id="speech-unsupported">{t('speechControl.unsupported')}</StyledHint>}
             </StyledOption>
 
-            <StyledOption>
-                <Button label={t('Save')} onClick={() => setSaveMessage(saveSettings() ? t('saved') : '')}/>
-                {/* Announced by screen readers without moving focus. */}
-                <span role="status">{saveMessage}</span>
-            </StyledOption>
         </section>
     );
 };
