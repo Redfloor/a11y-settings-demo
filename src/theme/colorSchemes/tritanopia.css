@@ -1,0 +1,19 @@
+/*
+Tritanopia: A type of blue-yellow colorblindness where there is a complete absence of blue retinal photoreceptors.
+*/
+
+:root.tritanopia {
+    --primary-color: #000000ff; /* Black */
+    --primary-color-half: #00000080;
+    --primary-color-80: #000000cc;
+    --secondary-color: #ffffffff; /* White */
+    --background-color: #b0b0b0ff; /* Neutral gray */
+    --background-color-half: #b0b0b080;
+    --background-color-80: #b0b0b0cc;
+    --background-secondary-color: #e5e5e5ff; /* Lighter gray for contrast */
+    --background-secondary-color-half: #e5e5e580;
+    --background-secondary-color-80: #e5e5e5cc;
+    --text-color: #000000ff; /* Black */
+    --text-color: #000000cc; /* Black */
+    --text-color-alt: #a3a3a3ff; /* Light gray */
+}

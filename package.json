@@ -1,0 +1,41 @@
+{
+  "name": "a11y-settings-demo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The accessibility settings page from Dark Playground, as a standalone React app: theme, font size, spacing, motion, language (i18n) and speech control.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@fontsource/opendyslexic": "^5.3.0",
+    "i18next": "^23.16.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-i18next": "^15.1.1",
+    "styled-components": "^6.1.13",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "jsdom": "^25.0.1",
+    "typescript": "~6.0.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.5"
+  },
+  "overrides": {
+    "csstype": "^3.2.3",
+    "react-i18next": {
+      "typescript": "$typescript"
+    }
+  }
+}

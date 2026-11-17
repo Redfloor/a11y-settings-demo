@@ -1,0 +1,18 @@
+/*
+    OpenDislexic font is weird on size, so we are using the actual values to simulate the following:
+    --font-size-small: 1.5rem;
+    --font-size-medium: 2rem;
+    --font-size-large: 2.5rem;
+ */
+
+:root.largeFonts {
+    --font-family: 'OpenDyslexic', sans-serif;
+    --font-size-small: 1.125rem;
+    --font-size-medium: 1.5rem;
+    --font-size-large: 1.875rem;
+    --font-size-massive: 4.5rem;
+    --line-height-small: 1.875rem;
+    --line-height-medium: 2.4rem;
+    --line-height-large: 3.35rem;
+    --line-height-massive: 8rem;
+}

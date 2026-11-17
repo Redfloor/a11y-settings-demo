@@ -1,0 +1,15 @@
+:root.highContrast {
+    --primary-color: #0000ffff; /* Bright blue */
+    --primary-color-half: #0000ff80;
+    --primary-color-80: #0000ffcc;
+    --secondary-color: #ff0000ff; /* Bright red */
+    --background-color: #ffffffff; /* White */
+    --background-color-half: #ffffff80;
+    --background-color-80: #ffffffcc;
+    --background-secondary-color: #000000ff; /* Black for strong contrast */
+    --background-secondary-color-half: #00000080;
+    --background-secondary-color-80: #000000cc;
+    --text-color: #000000ff; /* Black */
+    --text-color: #000000ff; /* Black */
+    --text-color-alt: #a3a3a3ff; /* Light gray */
+}

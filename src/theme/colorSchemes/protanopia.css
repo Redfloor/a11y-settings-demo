@@ -1,0 +1,19 @@
+/*
+Protanopia: A type of red-green colorblindness where there is a complete absence of red retinal photoreceptors.
+*/
+
+:root.protanopia {
+    --primary-color: #000000ff; /* Black */
+    --primary-color-half: #00000080;
+    --primary-color-80: #000000cc;
+    --secondary-color: #ffffffff; /* White */
+    --background-color: #ffcc00ff; /* Yellow */
+    --background-color-half: #ffcc0080;
+    --background-color-80: #ffcc00cc;
+    --background-secondary-color: #e5e5e5ff; /* Light gray for contrast */
+    --background-secondary-color-half: #e5e5e580;
+    --background-secondary-color-80: #e5e5e5cc;
+    --text-color: #000000ff; /* Black */
+    --text-color: #000000cc; /* Black */
+    --text-color-alt: #a3a3a3ff; /* Light gray */
+}

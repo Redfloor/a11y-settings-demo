@@ -1,0 +1,19 @@
+/*
+Achromatopsia: A rare condition where there is a complete absence of all color vision, resulting in seeing only shades of gray.
+*/
+
+:root.achromatopsia {
+    --primary-color: #000000ff; /* Black */
+    --primary-color-half: #00000080;
+    --primary-color-80: #000000cc;
+    --secondary-color: #ffffffff; /* White */
+    --background-color: #808080ff; /* Gray */
+    --background-color-half: #80808080;
+    --background-color-80: #808080cc;
+    --background-secondary-color: #b0b0b0ff; /* Lighter gray */
+    --background-secondary-color-half: #b0b0b080;
+    --background-secondary-color-80: #b0b0b0cc;
+    --text-color: #000000ff; /* Black */
+    --text-color-80: #000000cc; /* Black */
+    --text-color-alt: #a3a3a3ff; /* Light gray */
+}

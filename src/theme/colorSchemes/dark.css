@@ -1,0 +1,20 @@
+:root.dark {
+    --primary-color: #646cffff;
+    --primary-color-half: #646cff80;
+    --primary-color-80: #646cffcc;
+    --secondary-color: #424ad1ff;
+    --background-color: #141414ff;
+    --background-color-half: #14141480;
+    --background-color-80: #141414cc;
+    --background-secondary-color: #242424ff;
+    --background-secondary-color-half: #24242480;
+    --background-secondary-color-80: #242424cc;
+    --award-color: #ffdd33ff;
+    --award-color-half: #ffdd3380;
+    --award-color-trans: #ffdd3300;
+    --text-color: #dbdbdbff;
+    --text-color-80: #dbdbdbcc;
+    --text-color-alt: #a3a3a3ff;
+    --text-shadow: 0 0 2px black, 0 0 4px black;
+    --text-shadow-dark: 0 0 2px black, 0 0 4px black, 0 0 6px black, 0 0 8px black;
+}
